@@ -13,5 +13,5 @@ It's simple. Set up your browser to be compatible with user scripts and then use
 
 Below are the links to install every ViolentMonkey Script from this repo:
 
-**Auto Play Generated Audio on Message** (~~Not working on mobile~~ *Compatible with mobile devices!! Kinda... (Any iOS browser requires you to be interacting with the document, however, so you need to tap the screen anywhere for the audio to play)*)
+**Auto Play Generated Audio on Message** (~~Not working on mobile~~ *Compatible with mobile devices!! Kinda... (Any iOS browser requires you to interact with the document, however, so you need to tap the screen anywhere for the audio to play. I guess you can make it work if you get an auto-clicker lol... This is a webkit limitation, so there is not much I can do until the Kindroid team releases their API, but even then, I'm not sure I will be able to access chat logs this way.)*)
 > https://github.com/bearudev/kindroidaiscripts/raw/main/autoplayvoice.user.js
