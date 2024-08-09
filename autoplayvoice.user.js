@@ -11,6 +11,19 @@
 // @homepageURL  https://github.com/bearudev/kindroidaiscripts/
 // ==/UserScript==
 
+// ==UserScript==
+// @name         Auto Play Generated Audio on Message
+// @namespace    https://github.com/bearudev/kindroidaiscripts/
+// @version      1.2
+// @description  Automatically play generated audio when a new message is fully generated
+// @author       Raph
+// @match        https://kindroid.ai/*
+// @grant        none
+// @updateURL    https://github.com/bearudev/kindroidaiscripts/raw/main/autoplayvoice.user.js
+// @downloadURL  https://github.com/bearudev/kindroidaiscripts/raw/main/autoplayvoice.user.js
+// @homepageURL  https://github.com/bearudev/kindroidaiscripts/
+// ==/UserScript==
+
 (function() {
     'use strict';
 
@@ -53,9 +66,15 @@
 
             const audioElement = lastContainer.querySelector('audio');
             if (audioElement) {
-                audioElement.play().catch(() => {
-                    console.log('Audio playback failed due to Safari iOS restrictions.');
-                });
+                if (isSafariIOS()) {
+                    // On Safari iOS, attempt to play the audio and handle failures
+                    audioElement.play().catch(() => {
+                        console.log('Audio playback failed on Safari iOS.');
+                    });
+                } else {
+                    // On other browsers, just play the audio
+                    audioElement.play();
+                }
                 lastPlayedMessage = lastContainer;
             }
         }
@@ -71,3 +90,4 @@
     observer.observe(document.body, { childList: true, subtree: true });
 
 })();
+
