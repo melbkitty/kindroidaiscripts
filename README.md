@@ -11,4 +11,5 @@ It's simple. Set up your browser to be compatible with user scripts and then use
 
 Below are the links to install every ViolentMonkey Script from this repo:
 
-**Auto Play Generated Audio on Message** (~~Not working on mobile~~ *Compatible with mobile device!!*): https://github.com/bearudev/kindroidaiscripts/raw/main/autoplayvoice.user.js
+**Auto Play Generated Audio on Message** (~~Not working on mobile~~ *Compatible with mobile device!!*)
+> https://github.com/bearudev/kindroidaiscripts/raw/main/autoplayvoice.user.js
