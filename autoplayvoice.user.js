@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Auto Play Generated Audio on Message
 // @namespace    https://github.com/bearudev/kindroidaiscripts/
-// @version      1.2
+// @version      1.4
 // @description  Automatically play generated audio when a new message is fully generated
 // @author       Raph
 // @match        https://kindroid.ai/*
@@ -15,6 +15,7 @@
     'use strict';
 
     let lastPlayedMessage = null;  // Variable to store the last played message container
+    const CLICK_DELAY = 1000;
 
     // Function to check if the browser is Safari on iOS
     function isSafariIOS() {
@@ -43,13 +44,16 @@
                 return;
             }
 
-            const playIcon = lastContainer.querySelector('img[src*="playIcon"]');
-
-            if (playIcon) {
-                playIcon.click();
-                lastPlayedMessage = lastContainer;
-                return;
-            }
+            setTimeout(() => {
+                        const playIcon = lastContainer.querySelector('img[src*="playIcon"]');
+                        if (playIcon) {
+                            console.log('Found play icon:', playIcon);
+                            playIcon.click(); // Trigger the play action
+                            lastPlayedMessage = lastContainer;
+                        } else {
+                            console.log('Play icon not found in message container.');
+                        }
+                    }, CLICK_DELAY);
 
             const audioElement = lastContainer.querySelector('audio');
             if (audioElement) {
@@ -77,4 +81,3 @@
     observer.observe(document.body, { childList: true, subtree: true });
 
 })();
-
