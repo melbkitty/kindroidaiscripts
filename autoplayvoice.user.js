@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Auto Play Generated Audio on Message
 // @namespace    https://github.com/bearudev/kindroidaiscripts/
-// @version      1.0
+// @version      1.1
 // @description  Automatically play generated audio when a new message is fully generated
 // @author       Raph
 // @match        https://kindroid.ai/*
@@ -18,8 +18,18 @@
 
     // Function to check if the browser is Safari on iOS
     function isSafariIOS() {
-        return /iP(hone|od|ad)/.test(navigator.platform) && 
+        return /iP(hone|od|ad)/.test(navigator.platform) &&
                /^((?!CriOS).)*Safari/.test(navigator.userAgent);
+    }
+
+    // Function to unlock audio playback by simulating a user interaction
+    function unlockAudioPlayback() {
+        document.body.addEventListener('touchstart', () => {
+            const tempAudio = new Audio();
+            tempAudio.play().catch(() => {
+                // Ignored intentionally, this is just to "unlock" audio playback
+            });
+        }, { once: true });
     }
 
     // Function to check for the audio element or play icon
@@ -36,28 +46,24 @@
             const playIcon = lastContainer.querySelector('img[src*="playIcon"]');
 
             if (playIcon) {
-                if (isSafariIOS()) {
-                    alert('Play icon detected! Click to play the audio.');
-                } else {
-                    playIcon.click();
-                }
+                playIcon.click();
                 lastPlayedMessage = lastContainer;
                 return;
             }
 
             const audioElement = lastContainer.querySelector('audio');
             if (audioElement) {
-                if (isSafariIOS()) {
-                    alert('Audio element detected! Click to play.');
-                    audioElement.play().catch(() => {
-                        alert('Audio playback failed due to restrictions.');
-                    });
-                } else {
-                    audioElement.play();
-                }
+                audioElement.play().catch(() => {
+                    console.log('Audio playback failed due to Safari iOS restrictions.');
+                });
                 lastPlayedMessage = lastContainer;
             }
         }
+    }
+
+    // Attempt to unlock audio playback if on Safari iOS
+    if (isSafariIOS()) {
+        unlockAudioPlayback();
     }
 
     // Observe changes to the DOM
