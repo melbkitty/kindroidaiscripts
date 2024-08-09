@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Auto Play Generated Audio on Message
 // @namespace    https://github.com/bearudev/kindroidaiscripts/
-// @version      1.4
+// @version      1.2
 // @description  Automatically play generated audio when a new message is fully generated
 // @author       Raph
 // @match        https://kindroid.ai/*
@@ -15,7 +15,10 @@
     'use strict';
 
     let lastPlayedMessage = null;  // Variable to store the last played message container
-    const CLICK_DELAY = 1000;
+    const POLL_INTERVAL = 500;     // Interval in milliseconds to poll for message readiness
+    const MAX_RETRIES = 10;        // Maximum number of retries for checking message readiness
+    const CLICK_DELAY = 200;      // Delay in milliseconds before clicking the play button
+    const RECLICK_DELAY = 500;     // Delay in milliseconds between repeated clicks
 
     // Function to check if the browser is Safari on iOS
     function isSafariIOS() {
@@ -33,7 +36,35 @@
         }, { once: true });
     }
 
-    // Function to check for the audio element or play icon
+    // Function to click the play button until it changes to stop button
+    function clickPlayButtonUntilStopped(playIcon) {
+        const checkIcon = () => {
+            const newPlayIcon = document.querySelector('img[src*="playIcon"]');
+            const newStopIcon = document.querySelector('img[src*="stopIcon"]');
+
+            console.log(newPlayIcon);
+            console.log(newStopIcon);
+
+            if (newStopIcon) {
+                console.log('Play icon changed to stop icon.');
+                return true; // Stop clicking
+            }
+
+            playIcon.click();
+            console.log('Clicked play icon again.');
+            return false; // Continue clicking
+        };
+
+        // Initial click and then continue clicking if needed
+        if (checkIcon()) return;
+        const interval = setInterval(() => {
+            if (checkIcon()) {
+                clearInterval(interval);
+            }
+        }, RECLICK_DELAY);
+    }
+
+    // Function to check for new messages and play audio
     function checkForNewMessage() {
         const messageContainers = document.querySelectorAll('.css-70qvj9');
 
@@ -44,30 +75,29 @@
                 return;
             }
 
-            setTimeout(() => {
-                        const playIcon = lastContainer.querySelector('img[src*="playIcon"]');
-                        if (playIcon) {
-                            console.log('Found play icon:', playIcon);
-                            playIcon.click(); // Trigger the play action
-                            lastPlayedMessage = lastContainer;
-                        } else {
-                            console.log('Play icon not found in message container.');
-                        }
-                    }, CLICK_DELAY);
+            console.log('Checking message container:', lastContainer);
 
-            const audioElement = lastContainer.querySelector('audio');
-            if (audioElement) {
-                if (isSafariIOS()) {
-                    // On Safari iOS, attempt to play the audio and handle failures
-                    audioElement.play().catch(() => {
-                        console.log('Audio playback failed on Safari iOS.');
-                    });
-                } else {
-                    // On other browsers, just play the audio
-                    audioElement.play();
-                }
-                lastPlayedMessage = lastContainer;
-            }
+            // Polling to ensure the message is fully generated
+            let retries = 0;
+
+            const pollMessageReadiness = setInterval(() => {
+                  clearInterval(pollMessageReadiness);
+
+                  // Wait before clicking the play icon
+                  setTimeout(() => {
+                      const playIcon = lastContainer.querySelector('img[src*="playIcon"]');
+                      if (playIcon) {
+                          console.log('Found play icon:', playIcon);
+                          clickPlayButtonUntilStopped(playIcon); // Click the play button until it changes
+                          lastPlayedMessage = lastContainer;
+                      } else {
+                          console.log('Play icon not found in message container.');
+                      }
+                  }, CLICK_DELAY);
+
+            }, POLL_INTERVAL);
+
+            return; // Exit after initiating polling
         }
     }
 
