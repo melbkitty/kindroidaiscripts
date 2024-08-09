@@ -57,6 +57,15 @@
             playIcon.dispatchEvent(clickEvent);
 
             console.log('Simulated click on play icon.');
+            if(isSafariIOS())
+            {
+               setTimeout(() => {
+                      const audioToPlay = lastContainer.querySelector('audio')
+                      audioToPlay.play() //I have to do this on Safari and iOS browsers due to webkit limitations.
+                      //The button will not change to indicate something is playing, but whatever.
+                  }, 3000)
+                return true;
+            }
             return false; // Continue clicking
         };
 
@@ -90,18 +99,7 @@
                       const playIcon = lastContainer.querySelector('img[src*="playIcon"]');
                       if (playIcon) {
                           console.log('Found play icon:', playIcon);
-                          if(!isSafariIOS())
-                            {
-                              clickPlayButtonUntilStopped(playIcon); // Click the play button until it changes
-                            }else{
-                              setTimeout(() => {
-                                const audioToPlay = lastContainer.querySelector('audio')
-                              audioToPlay.play() //I have to do this on Safari and iOS browsers due to webkit limitations.
-                              //The button will not change to indicate something is playing, but whatever.
-                              }, 3000)
-
-                            }
-
+                          clickPlayButtonUntilStopped(playIcon); // Click the play button until it changes
                           lastPlayedMessage = lastContainer;
                       } else {
                           console.log('Play icon not found in message container.');
