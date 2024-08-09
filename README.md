@@ -7,4 +7,4 @@ I use ViolentMonkey and Google Chrome to execute my scripts, but they should wor
 ## How to Install
 Below are the links to install every ViolentMonkey Script from this repo:
 
-**Auto Play Generated Audio on Message**: https://github.com/bearudev/kindroidaiscripts/raw/main/autoplayvoice.user.js
+**Auto Play Generated Audio on Message** (Not working on mobile yet): https://github.com/bearudev/kindroidaiscripts/raw/main/autoplayvoice.user.js
