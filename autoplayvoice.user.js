@@ -16,6 +16,12 @@
 
     let lastPlayedMessage = null;  // Variable to store the last played message container
 
+    // Function to check if the browser is Safari on iOS
+    function isSafariIOS() {
+        return /iP(hone|od|ad)/.test(navigator.platform) && 
+               /^((?!CriOS).)*Safari/.test(navigator.userAgent);
+    }
+
     // Function to check for the audio element or play icon
     function checkForNewMessage() {
         const messageContainers = document.querySelectorAll('.css-70qvj9');
@@ -23,26 +29,33 @@
         if (messageContainers.length > 0) {
             const lastContainer = messageContainers[messageContainers.length - 1];
 
-            // If the last container has already been processed, return
             if (lastContainer === lastPlayedMessage) {
                 return;
             }
 
-            // Check if the play icon is present
             const playIcon = lastContainer.querySelector('img[src*="playIcon"]');
 
-            // If the play icon exists, simulate a click to play the audio
             if (playIcon) {
-                playIcon.click();
-                lastPlayedMessage = lastContainer;  // Update the last played message
+                if (isSafariIOS()) {
+                    alert('Play icon detected! Click to play the audio.');
+                } else {
+                    playIcon.click();
+                }
+                lastPlayedMessage = lastContainer;
                 return;
             }
 
-            // Alternatively, if the audio element is available, play it directly
             const audioElement = lastContainer.querySelector('audio');
             if (audioElement) {
-                audioElement.play();
-                lastPlayedMessage = lastContainer;  // Update the last played message
+                if (isSafariIOS()) {
+                    alert('Audio element detected! Click to play.');
+                    audioElement.play().catch(() => {
+                        alert('Audio playback failed due to restrictions.');
+                    });
+                } else {
+                    audioElement.play();
+                }
+                lastPlayedMessage = lastContainer;
             }
         }
     }
