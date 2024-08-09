@@ -1,19 +1,6 @@
 // ==UserScript==
 // @name         Auto Play Generated Audio on Message
 // @namespace    https://github.com/bearudev/kindroidaiscripts/
-// @version      1.1
-// @description  Automatically play generated audio when a new message is fully generated
-// @author       Raph
-// @match        https://kindroid.ai/*
-// @grant        none
-// @updateURL    https://github.com/bearudev/kindroidaiscripts/raw/main/autoplayvoice.user.js
-// @downloadURL  https://github.com/bearudev/kindroidaiscripts/raw/main/autoplayvoice.user.js
-// @homepageURL  https://github.com/bearudev/kindroidaiscripts/
-// ==/UserScript==
-
-// ==UserScript==
-// @name         Auto Play Generated Audio on Message
-// @namespace    https://github.com/bearudev/kindroidaiscripts/
 // @version      1.2
 // @description  Automatically play generated audio when a new message is fully generated
 // @author       Raph
