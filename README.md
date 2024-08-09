@@ -1,10 +1,14 @@
 # Kindroid Fun Utility Scripts
-ViolentMonkey Scripts I made to improve my experience using Kindroid.ai
-**These scripts require the ViolentMonkey extension; It is available in the Chrome Web Store or the Firefox Addon Store.**
+ViolentMonkey User Scripts I made to improve my experience using Kindroid.ai.
+**These scripts require the ViolentMonkey extension for PC users; It is available in the Chrome Web Store or the Firefox Addon Store.**
+**If you are using an iOS device, you need the UserScript app to allow Safari to download and use the user scripts. If you have an Android device, use a browser that is compatible with user scripts OR download a browser that supports Chrome extensions to install ViolentMonkey (e.g. Yandex Browser)**
 
-I use ViolentMonkey and Google Chrome to execute my scripts, but they should work anywhere ViolentMonkey or another similar userscript extension function correctly. Feel free to fork my scripts to make changes and improve them.
+I use ViolentMonkey, Google Chrome and Safari on iOS to execute and test my scripts, but they should work anywhere ViolentMonkey or another similar user script system functions correctly. Feel free to fork my scripts to make changes and improve them ( please credit me :) ). 
 
 ## How to Install
+It's simple. Set up your browser to be compatible with user scripts and then use the links below to install the scripts!
+**Please note that I cannot guarantee 100% compatibility with other Kindroid modifications**, but I can confirm most of them do with the Kindroid WideScreen v.3 theme and scripts (at least on PC).
+
 Below are the links to install every ViolentMonkey Script from this repo:
 
-**Auto Play Generated Audio on Message** (Not working on Safari iOS yet): https://github.com/bearudev/kindroidaiscripts/raw/main/autoplayvoice.user.js
+**Auto Play Generated Audio on Message** (~~Not working on mobile~~ *Compatible with mobile device!!*): https://github.com/bearudev/kindroidaiscripts/raw/main/autoplayvoice.user.js
