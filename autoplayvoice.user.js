@@ -50,8 +50,15 @@
                 return true; // Stop clicking
             }
 
-            playIcon.click();
-            console.log('Clicked play icon again.');
+            // Simulate a click event
+            const clickEvent = new MouseEvent('click', {
+                bubbles: true,
+                cancelable: true,
+                view: window
+            });
+            playIcon.dispatchEvent(clickEvent);
+
+            console.log('Simulated click on play icon.');
             return false; // Continue clicking
         };
 
