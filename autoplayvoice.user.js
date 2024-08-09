@@ -6,6 +6,9 @@
 // @author       Raph
 // @match        https://kindroid.ai/*
 // @grant        none
+// @updateURL    https://github.com/bearudev/kindroidaiscripts/raw/main/autoplayvoice.user.js
+// @downloadURL  https://github.com/bearudev/kindroidaiscripts/raw/main/autoplayvoice.user.js
+// @homepageURL  https://github.com/bearudev/kindroidaiscripts/
 // ==/UserScript==
 
 (function() {
