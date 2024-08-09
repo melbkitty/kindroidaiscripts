@@ -5,9 +5,11 @@ ViolentMonkey User Scripts I made to improve my experience using Kindroid.ai.
 
 I use ViolentMonkey, Google Chrome and Safari on iOS to execute and test my scripts, but they should work anywhere ViolentMonkey or another similar user script system functions correctly. Feel free to fork my scripts to make changes and improve them ( please credit me :) ). 
 
+**I cannot guarantee 100% compatibility with other Kindroid modifications**, but I can confirm most of them do with the Kindroid WideScreen v3 theme and scripts (at least on PC).
+
+
 ## How to Install
-It's simple. Set up your browser to be compatible with user scripts and then use the links below to install the scripts!
-**Please note that I cannot guarantee 100% compatibility with other Kindroid modifications**, but I can confirm most of them do with the Kindroid WideScreen v.3 theme and scripts (at least on PC).
+It's simple. Set up your browser to be compatible with user scripts and then use the links below to install the scripts! (Please note that some extensions like UserScripts on iOS require you to open the extension tab/setting to get the prompt to install the script)
 
 Below are the links to install every ViolentMonkey Script from this repo:
 
