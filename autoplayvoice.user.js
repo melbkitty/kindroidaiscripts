@@ -16,9 +16,8 @@
 
     let lastPlayedMessage = null;  // Variable to store the last played message container
     const POLL_INTERVAL = 500;     // Interval in milliseconds to poll for message readiness
-    const MAX_RETRIES = 10;        // Maximum number of retries for checking message readiness
     const CLICK_DELAY = 200;      // Delay in milliseconds before clicking the play button
-    const RECLICK_DELAY = 500;     // Delay in milliseconds between repeated clicks
+    const RECLICK_DELAY = 1000;     // Delay in milliseconds between repeated clicks
 
     // Function to check if the browser is Safari on iOS
     function isSafariIOS() {
@@ -39,10 +38,9 @@
     // Function to click the play button until it changes to stop button
     function clickPlayButtonUntilStopped(playIcon) {
         const checkIcon = () => {
-            const newPlayIcon = document.querySelector('img[src*="playIcon"]');
             const newStopIcon = document.querySelector('img[src*="stopIcon"]');
 
-            console.log(newPlayIcon);
+            console.log(playIcon); //first play icon of loaded page for some reason
             console.log(newStopIcon);
 
             if (newStopIcon) {
@@ -84,9 +82,6 @@
 
             console.log('Checking message container:', lastContainer);
 
-            // Polling to ensure the message is fully generated
-            let retries = 0;
-
             const pollMessageReadiness = setInterval(() => {
                   clearInterval(pollMessageReadiness);
 
@@ -95,7 +90,18 @@
                       const playIcon = lastContainer.querySelector('img[src*="playIcon"]');
                       if (playIcon) {
                           console.log('Found play icon:', playIcon);
-                          clickPlayButtonUntilStopped(playIcon); // Click the play button until it changes
+                          if(!isSafariIOS())
+                            {
+                              clickPlayButtonUntilStopped(playIcon); // Click the play button until it changes
+                            }else{
+                              setTimeout(() => {
+                                const audioToPlay = lastContainer.querySelector('audio')
+                              audioToPlay.play() //I have to do this on Safari and iOS browsers due to webkit limitations.
+                              //The button will not change to indicate something is playing, but whatever.
+                              }, 3000)
+
+                            }
+
                           lastPlayedMessage = lastContainer;
                       } else {
                           console.log('Play icon not found in message container.');
