@@ -9,9 +9,4 @@ I use ViolentMonkey, Google Chrome and Safari on iOS to execute and test my scri
 
 
 ## How to Install
-It's simple. Set up your browser to be compatible with user scripts and then use the links below to install the scripts! (Please note that some extensions like UserScripts on iOS require you to open the extension tab/setting to get the prompt to install the script)
-
-Below are the links to install every ViolentMonkey Script from this repo:
-
-**Auto Play Generated Audio on Message** (~~Not working on mobile~~ *Compatible with mobile devices!!*)
-> https://github.com/bearudev/kindroidaiscripts/raw/main/autoplayvoice.user.js
+It's simple. Set up your browser to be compatible with user scripts and then use the raw links of the repo files to install the scripts! (Please note that some extensions like UserScripts on iOS require you to open the extension tab/setting to get the prompt to install the script)
