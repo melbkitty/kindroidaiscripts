@@ -23,6 +23,6 @@
     }
 
     // Set an interval to check for the button every 0.5 seconds
-    setInterval(checkAndClickButton, 500);
+    setInterval(checkAndClickButton, 2000);
 
 })();
