@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Auto Click "Continue Conversation" in GCs
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.0.1
 // @description  Automatically clicks "Continue Conversation" on Kindroid.ai group chat
 // @author       aeroraphxp
 // @match        https://kindroid.ai/groupchat/*
