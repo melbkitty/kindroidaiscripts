@@ -44,7 +44,7 @@ observer.observe(document.body, { childList: true, subtree: true });
 // Function to keep checking every few seconds
 function startChecking() {
     clickWhenTargetElementsAbsent();
-    setTimeout(startChecking, 3000);
+    setTimeout(startChecking, 7500);
 }
 
 startChecking();
